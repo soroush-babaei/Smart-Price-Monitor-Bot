@@ -1,8 +1,8 @@
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher
-from src.config import BOT_TOKEN
-from src.handlers import router
+from config import BOT_TOKEN
+from handlers import router
 
 logging.basicConfig(level=logging.INFO)
 

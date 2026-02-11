@@ -5,8 +5,8 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 
-from src.utils import *
-from src.services import *
+from utils import *
+from services import *
 
 router = Router()
 
