@@ -19,7 +19,7 @@ class Form(StatesGroup):
 @router.message(F.text == "🔙 بازگشت به منوی اصلی")
 async def start_cmd(msg: Message, state: FSMContext):
     await state.clear()
-    await msg.answer("🚀 به ربات مانیتورینگ بازار خوش آمدید!", reply_markup=main_menu())
+    await msg.answer("🚀 خوش آمدید! انتخاب کنید:", reply_markup=main_menu())
 
 @router.message(F.text == "📊 Track Price")
 @router.message(F.text == "🔙 بازگشت")
@@ -38,6 +38,8 @@ async def quick_crypto(msg: Message):
     price = await get_price(symbol)
     if price:
         await msg.answer(f"💰 **{symbol}**: `${price:,.2f}`\n📊 [نمودار زنده](https://www.tradingview.com/symbols/{symbol}USDT/)")
+    else:
+        await msg.answer("❌ خطا در دریافت قیمت. احتمالاً مشکل از IP سرور است.")
 
 @router.message(F.text == "🔍 جستجوی سایر ارزها")
 async def search_crypto_init(msg: Message, state: FSMContext):
@@ -68,6 +70,8 @@ async def all_fiat_list(msg: Message):
         for code, rate in rates.items():
             txt += f"{flags.get(code, '🏳️')} {code}: `{rate:,.2f}`\n"
         await msg.answer(txt)
+    else:
+        await msg.answer("❌ خطا در دریافت نرخ‌ها.")
 
 @router.message(F.text == "🔍 جستجوی جفت ارز")
 async def search_fiat_init(msg: Message, state: FSMContext):
@@ -96,6 +100,8 @@ async def news_proc(msg: Message):
     if news:
         for n in news:
             await msg.answer(f"📰 **{n['title']}**\n[لینک خبر]({n['url']})")
+    else:
+        await msg.answer("❌ موفق به دریافت اخبار نشدیم.")
 
 @router.message(F.text == "🧮 ماشین حساب")
 async def calc_init(msg: Message, state: FSMContext):
