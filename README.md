@@ -25,7 +25,7 @@
 
 1. **کلون کردن رپازیتوری:**
    ```bash
-   git clone https://github.com/soroush-babaei/Arze_digital.git
+   git clone https://github.com/soroush-babaei/Smart-Price-Monitor-Bot.git
    cd Arze_digital
 2. **نصب وابستگی ها:**
    ```bash
